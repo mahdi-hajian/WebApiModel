@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Exceptions;
 using System;
 using System.Collections.Generic;
 using Common;
+using Entities.IdntityUser;
 
 namespace Data.Repositories
 {

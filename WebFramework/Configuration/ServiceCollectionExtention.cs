@@ -2,9 +2,8 @@
 using Common.Utilities;
 using Data;
 using Data.Contracts;
-using ElmahCore.Mvc;
-using ElmahCore.Sql;
 using Entities;
+using Entities.IdntityUser;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -15,7 +14,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Linq;
 using System.Security.Claims;
@@ -34,15 +32,15 @@ namespace WebFramework.Configuration
             });
         }
 
-        public static void AddElmah(this IServiceCollection services, IConfiguration Configuration, SiteSettings _siteSetting)
-        {
-            services.AddElmah<SqlErrorLog>(options =>
-            {
-                options.Path = _siteSetting.ElmahPath;
-                options.ConnectionString = Configuration.GetConnectionString("ElmahError");
-            });
+        //public static void AddElmah(this IServiceCollection services, IConfiguration Configuration, SiteSettings _siteSetting)
+        //{
+        //    services.AddElmah<SqlErrorLog>(options =>
+        //    {
+        //        options.Path = _siteSetting.ElmahPath;
+        //        options.ConnectionString = Configuration.GetConnectionString("ElmahError");
+        //    });
 
-        }
+        //}
 
         public static void AddCorsExtention(this IServiceCollection services)
         {
@@ -61,16 +59,16 @@ namespace WebFramework.Configuration
             });
         }
 
-        public static void AddMinimalMvc(this IServiceCollection services)
-        {
-            services.AddMvcCore()
-            .AddApiExplorer()
-            .AddAuthorization()
-            .AddFormatterMappings()
-            .AddDataAnnotations()
-            .AddJsonFormatters()
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-        }
+        //public static void AddMinimalMvc(this IServiceCollection services)
+        //{
+        //    services.AddMvcCore()
+        //    .AddApiExplorer()
+        //    .AddAuthorization()
+        //    .AddFormatterMappings()
+        //    .AddDataAnnotations()
+        //    .AddJsonFormatters()
+        //    .SetCompatibilityVersion(CompatibilityVersion.Latest);
+        //}
 
         public static void AddJwtAuthentication(this IServiceCollection services, JwtSettings jwtSettings)
         {

@@ -1,5 +1,6 @@
 ﻿using Common;
 using Entities;
+using Entities.IdntityUser;
 using Microsoft.AspNetCore.Identity;
 using Services.Interfaces;
 using Services.Models;

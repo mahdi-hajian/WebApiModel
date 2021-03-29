@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.Utilities;
 using Entities;
+using Entities.IdntityUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

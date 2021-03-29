@@ -2,6 +2,7 @@
 using Data.Contracts;
 using EFSecondLevelCache.Core;
 using Entities;
+using Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ namespace Data.Repositories
         #region Async Method
         public virtual Task<TEntity> GetByIdAsync(CancellationToken cancellationToken, params object[] ids)
         {
-            return Entities.FindAsync(ids, cancellationToken);
+            return Entities.FindAsync(ids, cancellationToken).AsTask();
         }
 
         public virtual async Task AddAsync(TEntity entity, CancellationToken cancellationToken, bool saveNow = true)

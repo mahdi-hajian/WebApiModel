@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Entities;
+using Entities.IdntityUser;
 using Microsoft.AspNetCore.Identity;
 using Services.Models;
 

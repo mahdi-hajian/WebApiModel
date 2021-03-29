@@ -2,6 +2,8 @@
 using EFSecondLevelCache.Core;
 using EFSecondLevelCache.Core.Contracts;
 using Entities;
+using Entities.Common;
+using Entities.IdntityUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -46,7 +48,7 @@ namespace Data
             // اگر پدری دارای پدری دارای چند فرزند بود اگر پدر را پاک کنیم ارور میدهد و پدر تا بودن فرزندان حذف نمیشوند
             //modelBuilder.AddRestrictDeleteBehaviorConvention();
 
-            // هر فیلدی که اسمش آیدی بود رو از نوع جیوآیدی بود رو ریفالت ولیواش رو تغغیر میدهد به NEWSEQUENTIALID() 
+            // هر فیلدی که اسمش آیدی بود رو از نوع جیوآیدی بود رو دیفالت ولیواش رو تغغیر میدهد به NEWSEQUENTIALID() 
             modelBuilder.AddSequentialGuidForIdConvention();
 
             // اسم جدول هارو جمع میکند مثلا یوزر میشود یوزرز چون رجیستر آل اینتیتیز همان اسم کلاس رو تیبل میکند
