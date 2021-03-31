@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using Entities.IdntityUser;
+using Entities.Interfaces.PostFolder;
+using Common;
 
 namespace Entities.PostFolder
 {
-    public class Post: BaseEntity<Guid>
+    public class Post : BaseEntity<Guid>, IPost, IScopedDependency
     {
         public string Title { get; set; }
         public string Description { get; set; }

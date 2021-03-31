@@ -14,7 +14,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebFramework.Configuration;
 using WebFramework.Configuration.Caching_configuraion_Extention;
-using WebFramework.CustomMapping;
 using WebFramework.Middleware;
 
 namespace WebApiModel

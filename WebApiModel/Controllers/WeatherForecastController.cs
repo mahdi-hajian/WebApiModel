@@ -4,11 +4,17 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EFCoreSecondLevelCacheInterceptor;
 using System.Threading.Tasks;
 using Common;
 using WebFramework.Api;
 using Entities.IdntityUser;
 using WebFramework.Filter;
+using Entities.Interfaces.PostFolder;
+using Data.Contracts;
+using WebApiModel.DTO.PostFolder;
+using Mapster;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiModel.Controllers
 {
@@ -18,19 +24,19 @@ namespace WebApiModel.Controllers
     [Route("api/v{version:apiVersion}/[controller]")] // api/v1/[controller]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly Category _category1;
-
-        public WeatherForecastController(Category category1)
+        public IRepository<Category> _CategoryRepository  { get; private set; }
+        public WeatherForecastController(IRepository<Category> CategoryRepository)
         {
-            _category1 = category1;
+            _CategoryRepository = CategoryRepository;
         }
 
         [HttpGet]
         ////[Route("salam")]
-        public ApiResult<Category> WeatherForecast()
+        public ApiResult<IList<CategoryDto>> WeatherForecast()
         {
-            _category1.Name = "asdfa";
-            return _category1;
+            var cat = _CategoryRepository.TableNoTracking.Cacheable(CacheExpirationMode.Absolute, TimeSpan.FromSeconds(30)).Include(c=>c.ChildCategories).Include(c=>c.ParentCategory).ToList();
+            var destObject = cat.Adapt<List<CategoryDto>>();
+            return destObject;
         }
     }
 }
