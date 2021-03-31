@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Entities;
 using Services.Autorizes;
 using System;
 using System.Linq;
@@ -11,13 +10,7 @@ namespace WebFramework.CustomMapping
     {
         public static void InitializeAutoMapper()
         {
-            Mapper.Initialize(config =>
-            {
-                config.AddCustomMappingProfile();
-            });
-
-            //Compile mapping after configuration to boost map speed
-            Mapper.Configuration.CompileMappings();
+           
         }
 
         public static void AddCustomMappingProfile(this IMapperConfigurationExpression config)

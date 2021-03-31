@@ -5,6 +5,7 @@ using Data;
 using Data.Contracts;
 using Data.Repositories;
 using Entities;
+using Entities.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Services.Autorizes;
 using Services.Interfaces;

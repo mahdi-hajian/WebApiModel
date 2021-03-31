@@ -1,15 +1,14 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.Extensions.Hosting;
 
 namespace WebFramework.Configuration
 {
     public static class ApplicationBuilderExtention
     {
-        public static void UseHsts(this IApplicationBuilder app, IHostingEnvironment env)
+        public static void UseCustomHsts(this IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 //app.UseDeveloperExceptionPage();

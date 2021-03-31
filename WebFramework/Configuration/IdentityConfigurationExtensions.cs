@@ -7,6 +7,7 @@ using Common;
 using Microsoft.AspNetCore.Identity;
 using Data;
 using WebFramework.Configuration.Error;
+using Entities.IdntityUser;
 
 namespace WebFramework.Configuration
 {

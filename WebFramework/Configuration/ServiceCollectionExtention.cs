@@ -23,7 +23,7 @@ namespace WebFramework.Configuration
 {
     public static class ServiceCollectionExtention
     {
-        public static void AddSbContext(this IServiceCollection services, IConfiguration Configuration)
+        public static void AddDbContext(this IServiceCollection services, IConfiguration Configuration)
         {
 
             services.AddDbContext<ApplicationDbContext>(Options =>
@@ -31,16 +31,6 @@ namespace WebFramework.Configuration
                 Options.UseSqlServer((Configuration.GetConnectionString("DefaultConnection")));
             });
         }
-
-        //public static void AddElmah(this IServiceCollection services, IConfiguration Configuration, SiteSettings _siteSetting)
-        //{
-        //    services.AddElmah<SqlErrorLog>(options =>
-        //    {
-        //        options.Path = _siteSetting.ElmahPath;
-        //        options.ConnectionString = Configuration.GetConnectionString("ElmahError");
-        //    });
-
-        //}
 
         public static void AddCorsExtention(this IServiceCollection services)
         {
@@ -58,17 +48,6 @@ namespace WebFramework.Configuration
                 options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
             });
         }
-
-        //public static void AddMinimalMvc(this IServiceCollection services)
-        //{
-        //    services.AddMvcCore()
-        //    .AddApiExplorer()
-        //    .AddAuthorization()
-        //    .AddFormatterMappings()
-        //    .AddDataAnnotations()
-        //    .AddJsonFormatters()
-        //    .SetCompatibilityVersion(CompatibilityVersion.Latest);
-        //}
 
         public static void AddJwtAuthentication(this IServiceCollection services, JwtSettings jwtSettings)
         {

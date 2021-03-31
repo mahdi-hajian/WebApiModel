@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities;
+using Entities.Common;
 using System.ComponentModel.DataAnnotations;
 using WebFramework.CustomMapping;
 
@@ -11,26 +12,6 @@ namespace WebFramework.Api
     {
         [Display(Name = "ردیف")]
         public TKey Id { get; set; }
-
-        public TEntity ToEntity()
-        {
-            return Mapper.Map<TEntity>(CastToDerivedClass(this));
-        }
-
-        public TEntity ToEntity(TEntity entity)
-        {
-            return Mapper.Map(CastToDerivedClass(this), entity);
-        }
-
-        public static TDto FromEntity(TEntity model)
-        {
-            return Mapper.Map<TDto>(model);
-        }
-
-        protected TDto CastToDerivedClass(BaseDto<TDto, TEntity, TKey> baseInstance)
-        {
-            return Mapper.Map<TDto>(baseInstance);
-        }
 
         public void CreateMappings(Profile profile)
         {

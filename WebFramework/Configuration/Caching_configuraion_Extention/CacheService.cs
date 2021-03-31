@@ -1,5 +1,5 @@
 ﻿using CacheManager.Core;
-using EFSecondLevelCache.Core;
+using EFCoreSecondLevelCacheInterceptor;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
@@ -12,42 +12,38 @@ namespace WebFramework.Configuration.Caching_configuraion_Extention
     {
         public static void AddCachingServiceExtention(this IServiceCollection services)
         {
-            services.AddEFSecondLevelCache();
+            const string providerName1 = "InMemory1";
+            services.AddEFSecondLevelCache(options =>
+                    options.UseEasyCachingCoreProvider(providerName1, isHybridCache: false).DisableLogging(true)
+            );
 
-            // Add an in-memory cache service provider
-            services.AddSingleton(typeof(ICacheManager<>), typeof(BaseCacheManager<>));
-            services.AddSingleton(typeof(ICacheManagerConfiguration),
-                new ConfigurationBuilder()
-                        .WithJsonSerializer()
-                        .WithMicrosoftMemoryCacheHandle(instanceName: "MemoryCache1")
-                        .WithExpiration(ExpirationMode.Absolute, TimeSpan.FromMinutes(5))
-                        .Build());
+            services.AddEasyCaching(options =>
+            {
+                // use memory cache with your own configuration
+                options.asdasdcasdc(config =>
+                {
+                    config.DBConfig = new InMemoryCachingOptions
+                    {
+                        // scan time, default value is 60s
+                        ExpirationScanFrequency = 60,
+                        // total count of cache items, default value is 10000
+                        SizeLimit = 100,
 
-            // Add Redis cache service provider
-            //var jss = new JsonSerializerSettings
-            //{
-            //    NullValueHandling = NullValueHandling.Ignore,
-            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            //};
-
-            //const string redisConfigurationKey = "redis";
-            //services.AddSingleton(typeof(ICacheManagerConfiguration),
-            //    new CacheManager.Core.ConfigurationBuilder()
-            //        .WithJsonSerializer(serializationSettings: jss, deserializationSettings: jss)
-            //        .WithUpdateMode(CacheUpdateMode.Up)
-            //        .WithRedisConfiguration(redisConfigurationKey, config =>
-            //        {
-            //            config.WithAllowAdmin()
-            //                .WithDatabase(0)
-            //                .WithEndpoint("localhost", 6379);
-            //        })
-            //        .WithMaxRetries(100)
-            //        .WithRetryTimeout(50)
-            //        .WithRedisCacheHandle(redisConfigurationKey)
-            //        .WithExpiration(ExpirationMode.Absolute, TimeSpan.FromMinutes(10))
-            //        .Build());
-            //services.AddSingleton(typeof(ICacheManager<>), typeof(BaseCacheManager<>));
-
+                        // enable deep clone when reading object from cache or not, default value is true.
+                        EnableReadDeepClone = false,
+                        // enable deep clone when writing object to cache or not, default value is false.
+                        EnableWriteDeepClone = false,
+                    };
+                    // the max random second will be added to cache's expiration, default value is 120
+                    config.MaxRdSecond = 120;
+                    // whether enable logging, default is false
+                    config.EnableLogging = false;
+                    // mutex key's alive time(ms), default is 5000
+                    config.LockMs = 5000;
+                    // when mutex key alive, it will sleep some time, default is 300
+                    config.SleepMs = 300;
+                }, providerName1);
+            });
         }
     }
 }
