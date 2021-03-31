@@ -1,4 +1,5 @@
-﻿using Common;
+﻿using Autofac;
+using Common;
 using Entities.PostFolder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,7 +17,7 @@ using WebFramework.Configuration.Caching_configuraion_Extention;
 using WebFramework.CustomMapping;
 using WebFramework.Middleware;
 
-namespace WebApplication2
+namespace WebApiModel
 {
     // common
     // entities
@@ -38,34 +39,32 @@ namespace WebApplication2
         }
 
         public IConfiguration Configuration { get; }
+          public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddScoped<Category>();
+            //services.AddScoped<Category>();
 
             services.AddCorsExtention();
-
             services.AddCachingServiceExtention();
-
             // با این متد میشود این تنظیمات را داخل کانسترکتور ها دریافت کرد
             // مثال در کانسترکتور JWTSwrvice.cs
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
-
             services.AddDbContext(Configuration);
-
             services.AddCustomApiVersioning();
-
             // ترتیب بین این دو مورد پایین مهم است
             services.AddCustomIdentity(_siteSetting.IdentitySettings);
             services.AddJwtAuthentication(_siteSetting.JwtSettings);
-
             services.AddControllers();
 
-            // برای استفاده از اتوفک
-            // ابتدا خروجی این متد را از ووید به آی سرویس پروایدر تغییر میدهید و عملیات های زیر را انجام میدهیم
-            return services.BuilderServiceProvider();
+            // ConfigureContainer را میخاند
+            services.AddOptions();
+        }
+
+        public void ConfigureContainer (ContainerBuilder builder)
+        {
+            builder.RegisterModule(new AutofacConfiguraion());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

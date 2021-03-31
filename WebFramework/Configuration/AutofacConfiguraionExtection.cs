@@ -6,6 +6,7 @@ using Data.Contracts;
 using Data.Repositories;
 using Entities;
 using Entities.Common;
+using Entities.PostFolder;
 using Microsoft.Extensions.DependencyInjection;
 using Services.Autorizes;
 using Services.Interfaces;
@@ -16,6 +17,20 @@ using System.Text;
 
 namespace WebFramework.Configuration
 {
+    public class AutofacConfiguraion: Module
+    {
+        // جایگزین کردن سرویس پرووایدر اتوفک بجای سرویس پرووایدر پیشفرض مایکروسافت
+        protected override void Load(ContainerBuilder builder)
+        {
+            // روش قبلی خود مایکروسافت
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddScoped<IUserRepository, UserRepository>();
+
+            base.Load(builder);
+            builder.AddService();
+
+        }
+    }
     public static class AutofacConfiguraionExtection
     {
         public static void AddService(this ContainerBuilder containerBuilder)
@@ -27,9 +42,11 @@ namespace WebFramework.Configuration
             //containerBuilder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
             //containerBuilder.RegisterType<JWTService>().As<IJWTService>().InstancePerLifetimeScope();
             //containerBuilder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
+            //containerBuilder.RegisterType<Category>().AsSelf().InstancePerLifetimeScope();
 
             // AssemblyScannign + Auto/Conventianal Registraion------روش اتوماتیک
             // برای دریافت اسمبلی باید یه کلاس و ... که درون اون اسمبلیه رو تایپش رو بگیریم
+            // منظور از اسمبلی همان کلاس لایبرری ها هستن
             var commonAssembly = typeof(SiteSettings).Assembly;
             var EntitiesAssembly = typeof(IEntity).Assembly;
             var DataAssembly = typeof(ApplicationDbContext).Assembly;
@@ -52,26 +69,6 @@ namespace WebFramework.Configuration
             ///////////////////////////////////////////
             /// property injection
         } 
-
-        // جایگزین کردن سرویس پرووایدر اتوفک بجای سرویس پرووایدر پیشفرض مایکروسافت
-        public static IServiceProvider BuilderServiceProvider(this IServiceCollection Service)
-        {
-            // روش قبلی خود مایکروسافت
-            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            //services.AddScoped<IUserRepository, UserRepository>();
-
-
-            var containerBuilder = new ContainerBuilder();
-
-            // سرویس هایی که قبلا اضافه شده است رو به اتوفک اضافه میکند
-            containerBuilder.Populate(Service);
-
-            // register services to autofac containerBuilder
-            containerBuilder.AddService();
-
-            var container = containerBuilder.Build();
-            return new AutofacServiceProvider(container);
-        }
     }
 }
 

@@ -2,7 +2,6 @@
 using Entities;
 using Entities.IdntityUser;
 using Microsoft.AspNetCore.Identity;
-using Services.Models;
 
 namespace Services.Interfaces
 {

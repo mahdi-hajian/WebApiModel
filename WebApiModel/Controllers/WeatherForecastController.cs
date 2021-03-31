@@ -10,7 +10,7 @@ using WebFramework.Api;
 using Entities.IdntityUser;
 using WebFramework.Filter;
 
-namespace WebApplication2.Controllers
+namespace WebApiModel.Controllers
 {
     [ApiController]
     [ApiResultFilter]
