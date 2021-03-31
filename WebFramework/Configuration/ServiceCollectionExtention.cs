@@ -34,19 +34,15 @@ namespace WebFramework.Configuration
 
         public static void AddCorsExtention(this IServiceCollection services)
         {
-            // add "ClientDomain": "https://www.tabandesign.ir" in appsetting.json
-            // add app.UseCors("SiteCorsPolicy"); in Configure method
-
-            var corsBuilder = new CorsPolicyBuilder();
-            corsBuilder.AllowAnyHeader();
-            corsBuilder.AllowAnyMethod();
-            //corsBuilder.WithOrigins("https://www.tabandesign.ir"); // for a specific url. Don't add a forward slash on the end!
-            corsBuilder.AllowAnyOrigin(); // For anyone access.
-            corsBuilder.AllowCredentials();
             services.AddCors(options =>
             {
-                options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
+                options.AddPolicy("SiteCorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        //.AllowCredentials()
+                        .AllowAnyHeader());
             });
+
         }
 
         public static void AddJwtAuthentication(this IServiceCollection services, JwtSettings jwtSettings)

@@ -11,6 +11,7 @@ namespace Entities.PostFolder
 {
     public class Category: BaseEntity<int>
     {
+      
         [Required]
         [StringLength(50)]
         public string Name { get; set; }

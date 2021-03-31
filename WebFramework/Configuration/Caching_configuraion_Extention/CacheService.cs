@@ -1,4 +1,5 @@
 ﻿using CacheManager.Core;
+using EasyCaching.InMemory;
 using EFCoreSecondLevelCacheInterceptor;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -20,7 +21,7 @@ namespace WebFramework.Configuration.Caching_configuraion_Extention
             services.AddEasyCaching(options =>
             {
                 // use memory cache with your own configuration
-                options.asdasdcasdc(config =>
+                options.UseInMemory(config =>
                 {
                     config.DBConfig = new InMemoryCachingOptions
                     {

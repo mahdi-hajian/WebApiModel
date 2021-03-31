@@ -1,39 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities.PostFolder;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common;
+using WebFramework.Api;
+using Entities.IdntityUser;
+using WebFramework.Filter;
 
 namespace WebApplication2.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [ApiResultFilter]
+    [ApiVersion(version: "1")]
+    [Route("api/v{version:apiVersion}/[controller]")] // api/v1/[controller]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly Category _category1;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(Category category1)
         {
-            _logger = logger;
+            _category1 = category1;
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        ////[Route("salam")]
+        public ApiResult<Category> WeatherForecast()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            _category1.Name = "asdfa";
+            return _category1;
         }
     }
 }

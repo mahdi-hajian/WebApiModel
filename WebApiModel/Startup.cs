@@ -1,4 +1,5 @@
 ﻿using Common;
+using Entities.PostFolder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,20 +27,23 @@ namespace WebApplication2
     public class Startup
     {
         private readonly SiteSettings _siteSetting;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            //AutoMapperConfiguration.InitializeAutoMapper();
+
+            // با این متد میشود این تنظیمات را داخل کانسترکتور ها دریافت کرد
+            // مثال در کانسترکتور JWTSwrvice.cs
             _siteSetting = configuration.GetSection(nameof(SiteSettings)).Get<SiteSettings>();
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
 
-            //  services.AddEFSecondLevelCache();
+            services.AddScoped<Category>();
 
             services.AddCorsExtention();
 
@@ -69,15 +73,9 @@ namespace WebApplication2
         {
             app.UseCustomExceptionHandler();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
             app.UseCustomHsts(env);
 
             app.UseCors("SiteCorsPolicy");
-
-            // app.UseEFSecondLevelCache();
 
             app.UseHttpsRedirection();
 

@@ -1,6 +1,5 @@
 ﻿using Common.Utilities;
 using Data.Contracts;
-using EFSecondLevelCache.Core;
 using Entities;
 using Entities.Common;
 using Microsoft.EntityFrameworkCore;
