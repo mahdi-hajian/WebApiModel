@@ -14,11 +14,11 @@ using Entities.IdntityUser;
 using Services.Interfaces;
 using Data.Contracts;
 using WebApiModel.DTO.PostFolder;
-using MyApi.Models;
 
 namespace WebApiModel.Controllers.v1
 {
     [ApiVersion("1")]
+    [Authorize]
     public class UsersController : BaseController
     {
         private readonly IUserRepository userRepository;

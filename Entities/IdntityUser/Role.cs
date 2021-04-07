@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Entities.IdntityUser
 {
-    public class Role: IdentityRole<int>, IEntity
+    public class Role: IdentityRole<int>, IEntity<int>
     {
         public string Description { get; set; }
     }

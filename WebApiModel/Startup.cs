@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Common;
+using Data;
 using Entities.PostFolder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Services.Seed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +46,6 @@ namespace WebApiModel
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddCorsExtention();
             services.AddCachingServiceExtention();
             // با این متد میشود این تنظیمات را داخل کانسترکتور ها دریافت کرد
@@ -84,6 +85,7 @@ namespace WebApiModel
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

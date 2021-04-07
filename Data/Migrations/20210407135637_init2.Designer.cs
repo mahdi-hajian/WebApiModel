@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210331171517_init")]
-    partial class init
+    [Migration("20210407135637_init2")]
+    partial class init2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "8cb78709-a44e-4595-9c42-3db931ec968e",
+                            ConcurrencyStamp = "566496df-d9e0-452e-9582-da7d18f167b3",
                             Description = "ادمین اصلی سایت",
                             Name = "Leader",
                             NormalizedName = "LEADER"
@@ -66,7 +66,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "c3ed11b2-684b-485c-a52d-dd28718a36b0",
+                            ConcurrencyStamp = "46300f66-9941-4ca3-b695-11f6fc71e601",
                             Description = "جانشین",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
@@ -155,6 +155,28 @@ namespace Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            Age = 24,
+                            ConcurrencyStamp = "05d511da-7eb0-43a1-a3c6-8ead19d7aa3d",
+                            Email = "admin@mahdihajian.ir",
+                            EmailConfirmed = true,
+                            FullName = "mahdi hajian",
+                            Gender = 1,
+                            IsActive = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@MAHDIHAJIAN.IR",
+                            NormalizedUserName = "MAHDI_HAJIAN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJk1i5ZEtS18TxyqdWWC1Vk6Eczra7x0KSf0nUEBaOtvRh3T7LN/YG0znWwSTJRCsQ==",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "01b1d3f3-1740-4635-abf9-9eceefbb1ebf",
+                            TwoFactorEnabled = false,
+                            UserName = "mahdi_hajian"
+                        });
                 });
 
             modelBuilder.Entity("Entities.PostFolder.Category", b =>
@@ -290,6 +312,18 @@ namespace Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRole");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 2
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>

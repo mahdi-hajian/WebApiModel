@@ -10,6 +10,7 @@ using Entities.PostFolder;
 using Microsoft.Extensions.DependencyInjection;
 using Services.Autorizes;
 using Services.Interfaces;
+using Services.Seed;
 using Services.UserService;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,9 @@ namespace WebFramework.Configuration
             //containerBuilder.RegisterType<JWTService>().As<IJWTService>().InstancePerLifetimeScope();
             //containerBuilder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
             //containerBuilder.RegisterType<Category>().AsSelf().InstancePerLifetimeScope();
+
+            containerBuilder.RegisterType<YourDbContextSeedData>().AsSelf().InstancePerDependency();
+            containerBuilder.RegisterType<ApplicationDbContext>().AsSelf().InstancePerLifetimeScope();
 
             // AssemblyScannign + Auto/Conventianal Registraion------روش اتوماتیک
             // برای دریافت اسمبلی باید یه کلاس و ... که درون اون اسمبلیه رو تایپش رو بگیریم

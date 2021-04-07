@@ -45,7 +45,7 @@ namespace WebFramework.Swagger
             {
                 var xmlDocPath = Path.Combine(AppContext.BaseDirectory, "MyApi.xml");
                 //show controller XML comments like summary
-                options.IncludeXmlComments(xmlDocPath, true);
+                //options.IncludeXmlComments(xmlDocPath, true);
 
                 options.EnableAnnotations();
 

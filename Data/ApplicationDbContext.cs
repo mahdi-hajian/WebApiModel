@@ -56,12 +56,12 @@ namespace Data
             #region seed
             modelBuilder.Entity<Role>().HasData(
                 new Role
-                    {
-                        Id = 1,
-                        Name = "Leader",
-                        Description = "ادمین اصلی سایت",
-                        NormalizedName = "LEADER"
-                    },
+                {
+                    Id = 1,
+                    Name = "Leader",
+                    Description = "ادمین اصلی سایت",
+                    NormalizedName = "LEADER"
+                },
                     new Role
                     {
                         Id = 2,
@@ -70,6 +70,34 @@ namespace Data
                         NormalizedName = "ADMIN"
                     }
                 );
+            //
+            var user = new User()
+            {
+                Id=1,
+                UserName = "mahdi_hajian",
+                FullName = "mahdi hajian",
+                Age = 24,
+                IsActive = true,
+                Gender = GenderType.Male,
+                NormalizedUserName = "mahdi_hajian".ToUpper(),
+                Email = "admin@mahdihajian.ir",
+                NormalizedEmail = "admin@mahdihajian.ir".ToUpper(),
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                LockoutEnabled = false,
+                TwoFactorEnabled = false,
+                AccessFailedCount = 0,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+            var password = new PasswordHasher<User>();
+            var hashed = password.HashPassword(user, "Mh!123456");
+            user.PasswordHash = hashed;
+            modelBuilder.Entity<User>().HasData(user);
+            //
+            var userrole1 = new IdentityUserRole<int>() {RoleId = 1 , UserId = 1 };
+            var userrole2 = new IdentityUserRole<int>() {RoleId = 2 , UserId = 1 };
+            modelBuilder.Entity<IdentityUserRole<int>>().HasData(userrole1, userrole2);
+
             #endregion
 
             #region Change Name

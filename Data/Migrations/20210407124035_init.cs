@@ -207,16 +207,6 @@ namespace Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Role",
-                columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { 1, "8cb78709-a44e-4595-9c42-3db931ec968e", "ادمین اصلی سایت", "Leader", "LEADER" });
-
-            migrationBuilder.InsertData(
-                table: "Role",
-                columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
-                values: new object[] { 2, "c3ed11b2-684b-485c-a52d-dd28718a36b0", "جانشین", "Admin", "ADMIN" });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_ParentCategoryId",
                 table: "Categories",
