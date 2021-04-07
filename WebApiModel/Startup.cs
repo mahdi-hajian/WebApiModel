@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebFramework.Configuration;
 using WebFramework.Configuration.Caching_configuraion_Extention;
+using WebFramework.CustomMapping;
 using WebFramework.Middleware;
 
 namespace WebApiModel
@@ -38,18 +39,17 @@ namespace WebApiModel
         }
 
         public IConfiguration Configuration { get; }
-          public ILifetimeScope AutofacContainer { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddScoped<Category>();
 
             services.AddCorsExtention();
             services.AddCachingServiceExtention();
             // با این متد میشود این تنظیمات را داخل کانسترکتور ها دریافت کرد
             // مثال در کانسترکتور JWTSwrvice.cs
             services.Configure<SiteSettings>(Configuration.GetSection(nameof(SiteSettings)));
+            services.InitializeAutoMapper();
             services.AddDbContext(Configuration);
             services.AddCustomApiVersioning();
             // ترتیب بین این دو مورد پایین مهم است

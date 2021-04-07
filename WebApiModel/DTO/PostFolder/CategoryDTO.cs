@@ -11,7 +11,7 @@ using WebFramework.Api;
 
 namespace WebApiModel.DTO.PostFolder
 {
-    public class CategoryDto : BaseDto< int> // => Category
+    public class CategoryDto : BaseDto< CategoryDto, Category, int> // => Category
     {
       
         [Required]

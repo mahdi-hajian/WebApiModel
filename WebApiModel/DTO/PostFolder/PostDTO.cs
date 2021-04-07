@@ -8,7 +8,7 @@ using Entities.PostFolder;
 
 namespace WebApiModel.DTO.PostFolder
 {
-    public class PostDto : BaseDto<Guid> // => Post
+    public class PostDto : BaseDto<PostDto, Post, Guid> // => Post
     {
         public string Title { get; set; }
         public string Description { get; set; }

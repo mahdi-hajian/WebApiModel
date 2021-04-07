@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace WebApiModel.DTO.PostFolder
 {
+    // کلاسی برای دریافت اطلاعات از ورودی 
+    // public virtual async Task<ActionResult> Token([FromForm] TokenRequest tokenRequest, CancellationToken cancellationToken)
     public class TokenRequest
     {
         [Required(ErrorMessage = "{0} اجباری میباشد")]
