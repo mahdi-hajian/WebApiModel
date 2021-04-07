@@ -16,6 +16,7 @@ using WebFramework.Configuration;
 using WebFramework.Configuration.Caching_configuraion_Extention;
 using WebFramework.CustomMapping;
 using WebFramework.Middleware;
+using WebFramework.Swagger;
 
 namespace WebApiModel
 {
@@ -56,6 +57,7 @@ namespace WebApiModel
             services.AddCustomIdentity(_siteSetting.IdentitySettings);
             services.AddJwtAuthentication(_siteSetting.JwtSettings);
             services.AddControllers();
+            services.AddSwagger();
 
             // ConfigureContainer را میخاند
             services.AddOptions();
@@ -76,6 +78,8 @@ namespace WebApiModel
             app.UseCors("SiteCorsPolicy");
 
             app.UseHttpsRedirection();
+
+            app.UseSwaggerAndUI();
 
             app.UseRouting();
 

@@ -1,16 +1,11 @@
 ﻿using Entities.PostFolder;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using EFCoreSecondLevelCacheInterceptor;
 using System.Threading.Tasks;
-using Common;
 using WebFramework.Api;
-using Entities.IdntityUser;
 using WebFramework.Filter;
-using Entities.Interfaces.PostFolder;
 using Data.Contracts;
 using WebApiModel.DTO.PostFolder;
 using Mapster;
@@ -18,13 +13,10 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
-namespace WebApiModel.Controllers
+namespace WebApiModel.Controllers.v1
 {
-    [ApiController]
-    [ApiResultFilter]
     [ApiVersion(version: "1")]
-    [Route("api/v{version:apiVersion}/[controller]")] // api/v1/[controller]
-    public class TestController : ControllerBase
+    public class TestController : BaseController
     {
         private readonly IMapper _mapper;
         private readonly IRepository<Category> _CategoryRepository;

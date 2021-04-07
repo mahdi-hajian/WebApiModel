@@ -87,32 +87,25 @@ namespace Data
         public override int SaveChanges()
         {
             _cleanString();
-            var result = base.SaveChanges();
-
-            return result;
+            return base.SaveChanges();
         }
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
             _cleanString();
-            var result = base.SaveChanges(acceptAllChangesOnSuccess);
-
-            return result;
+            return base.SaveChanges(acceptAllChangesOnSuccess);
         }
 
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
             _cleanString();
-            var result = base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-            return result;
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             _cleanString();
-            var result = base.SaveChangesAsync(cancellationToken);
-
-            return result;
+            return base.SaveChangesAsync(cancellationToken);
         }
 
         private void _cleanString()
@@ -129,8 +122,8 @@ namespace Data
 
                 foreach (var property in properties)
                 {
-                    string propName = property.Name;
-                    string val = (string)property.GetValue(item.Entity, null);
+                    var propName = property.Name;
+                    var val = (string)property.GetValue(item.Entity, null);
 
                     if (val.HasValue())
                     {
@@ -142,7 +135,6 @@ namespace Data
                 }
             }
         }
-
         #endregion
     }
 }

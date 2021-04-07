@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.IdntityUser
 {
-    public class User : IdentityUser<int>, IEntity
+    public class User : IdentityUser<int>, IEntity<int>
     {
         public User()
         {
