@@ -1,0 +1,32 @@
+﻿<CodeSnippet Format="1.1.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>router</Title>
+    <Shortcut>router</Shortcut>
+    <Author>mahdi hajian</Author>
+    <Description>Angular 6 routerLink snippet</Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>path</ID>
+        <ToolTip>path</ToolTip>
+        <Default>path</Default>
+      </Literal>
+      <Literal>
+        <ID>routeParam</ID>
+        <ToolTip>routeParam</ToolTip>
+        <Default>routeParam</Default>
+      </Literal>
+      <Literal>
+        <ID>name</ID>
+        <ToolTip>name</ToolTip>
+        <Default>name</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="html" Key="*">
+    <![CDATA[<a [routerLink]="[ '/$path$', $routeParam$]">$name$</a>]]></Code>
+  </Snippet>
+</CodeSnippet>

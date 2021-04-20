@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Api-Method</Title>
+      <Author>
+      </Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>crud</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>MyRegion</ID>
+          <ToolTip>MyRegion</ToolTip>
+          <Default>MyRegion</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>HttpPost</ID>
+          <ToolTip>HttpPost</ToolTip>
+          <Default>HttpPost</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Name</ID>
+          <ToolTip>Name</ToolTip>
+          <Default>Name</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>input1</ID>
+          <ToolTip>input1</ToolTip>
+          <Default>input1</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>input2</ID>
+          <ToolTip>input2</ToolTip>
+          <Default>input2</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>input3</ID>
+          <ToolTip>input3</ToolTip>
+          <Default>input3</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[#region $Name$
+        [$HttpPost$]
+        public async void $Name$([FromBody] $Name$Model $input1$, [FromHeader] string $input2$, [FromQuery] string $input3$)
+        {
+
+        }
+        #endregion]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

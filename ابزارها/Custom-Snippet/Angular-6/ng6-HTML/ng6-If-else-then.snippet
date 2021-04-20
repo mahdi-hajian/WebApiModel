@@ -1,0 +1,38 @@
+﻿<CodeSnippet Format="1.1.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>ift</Title>
+    <Shortcut>ift</Shortcut>
+    <Author>mahdi hajian</Author>
+    <Description>Angular 6 if-else-then snippet</Description>
+    <SnippetTypes>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>expression</ID>
+        <ToolTip>expression</ToolTip>
+        <Default>expression</Default>
+      </Literal>
+      <Literal>
+        <ID>thenTemplate</ID>
+        <ToolTip>thenTemplate</ToolTip>
+        <Default>thenTemplate</Default>
+      </Literal>
+      <Literal>
+        <ID>elseTemplate</ID>
+        <ToolTip>elseTemplate</ToolTip>
+        <Default>elseTemplate</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="html" Key="*">
+    <![CDATA[<ng-container *ngIf="$expression$; then $thenTemplate$; else $elseTemplate$"></ng-container>
+<ng-template #$thenTemplate$>
+  
+</ng-template>
+<ng-template #$elseTemplate$>
+  
+</ng-template>]]></Code>
+  </Snippet>
+</CodeSnippet>
